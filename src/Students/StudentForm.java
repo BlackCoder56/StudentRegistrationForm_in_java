@@ -8,7 +8,10 @@ import java.awt.event.ItemListener;
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +32,30 @@ public final class StudentForm extends javax.swing.JFrame {
         departmentRadioGroup();
     }
     
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    String email;
+    String comfirmEmail;
+    public boolean isValidEmail(){
+        email = email_txt.getText();
+        
+        if(email == null){
+            return false;
+        }
+        
+        Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+    
+    public void comfirmEmail(){
+        email = email_txt.getText();
+        comfirmEmail = emailComfirm_txt.getText();
+        
+        if(!email.equals(comfirmEmail)){
+            JOptionPane.showMessageDialog(this, "Email Address does't Match", "ERROR", JOptionPane.ERROR_MESSAGE);
+            emailComfirm_txt.requestFocus();
+        }
+    }
     public void genderRadioGroup(){
         ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(maleRadioBtn);
@@ -45,11 +72,12 @@ public final class StudentForm extends javax.swing.JFrame {
     }
     
     public final void loadYears(){
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int startYear = 1996;
+//        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int endYear = 2010;
+        int startYear = 1966;
         String yr;
         
-        for(int i = startYear; i<=currentYear; i++){
+        for(int i = startYear; i<=endYear; i++){
             yr = String.valueOf(i);
             yearCombo.addItem(yr);
         }
@@ -114,11 +142,11 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        email_txt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        emailComfirm_txt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
@@ -154,7 +182,13 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel3.setText("Student Last Name");
 
-        jTextField2.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        email_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        email_txt.addActionListener(this::email_txtActionPerformed);
+        email_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                email_txtKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel4.setText("Email Address");
@@ -164,12 +198,23 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel5.setText("Comfirm Email Address");
 
-        jTextField4.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        emailComfirm_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        emailComfirm_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emailComfirm_txtMouseClicked(evt);
+            }
+        });
+        emailComfirm_txt.addActionListener(this::emailComfirm_txtActionPerformed);
 
         jLabel6.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel6.setText("Password");
 
         jPasswordField1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordField1MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel7.setText("Comfrim Password");
@@ -252,8 +297,8 @@ public final class StudentForm extends javax.swing.JFrame {
                                 .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                                 .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(email_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(emailComfirm_txt, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
@@ -308,11 +353,11 @@ public final class StudentForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailComfirm_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -372,6 +417,35 @@ public final class StudentForm extends javax.swing.JFrame {
         loadDays(selectedMonth, selectedYear);
     }//GEN-LAST:event_monthComboActionPerformed
 
+    private void emailComfirm_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailComfirm_txtActionPerformed
+        
+    }//GEN-LAST:event_emailComfirm_txtActionPerformed
+
+    private void email_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_txtActionPerformed
+        boolean isValidEmail = isValidEmail();
+        
+        if(isValidEmail==false){
+            JOptionPane.showMessageDialog(this, "Enter a valid Email Address", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_email_txtActionPerformed
+
+    private void email_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_email_txtKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_email_txtKeyTyped
+
+    private void emailComfirm_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailComfirm_txtMouseClicked
+        boolean isValidEmail = isValidEmail();
+        
+        if(isValidEmail==false){
+            JOptionPane.showMessageDialog(this, "Enter a valid Email Address", "ERROR", JOptionPane.ERROR_MESSAGE);
+            email_txt.requestFocus();
+        }
+    }//GEN-LAST:event_emailComfirm_txtMouseClicked
+
+    private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
+        comfirmEmail();
+    }//GEN-LAST:event_jPasswordField1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -405,6 +479,8 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dayCombo;
     private javax.swing.JRadioButton ecRadioBtn;
     private javax.swing.JRadioButton electricalRadioBtn;
+    private javax.swing.JTextField emailComfirm_txt;
+    private javax.swing.JTextField email_txt;
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -423,9 +499,7 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JRadioButton mechanicalRadioBtn;
     private javax.swing.JComboBox<String> monthCombo;
