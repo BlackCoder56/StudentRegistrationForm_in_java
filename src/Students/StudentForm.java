@@ -6,6 +6,7 @@ package Students;
 
 import java.awt.event.ItemListener;
 import java.time.Month;
+import java.time.YearMonth;
 import java.util.Calendar;
 
 /**
@@ -45,6 +46,44 @@ public class StudentForm extends javax.swing.JFrame {
             monthCombo.addItem(stringMonth);
         }
     }
+    
+    String selectedYear;
+    String selectedMonth;
+    
+    public void loadDays(String enteredmonth, String enteredYear){
+        int month = 1;
+        
+        int numberOfDays = 0;
+        switch(enteredmonth){
+            case "JANUARY" -> month = 1;
+            case "FEBRUARY" -> month = 2;
+            case "MARCH" -> month = 3;
+            case "APRIL" -> month = 4;
+            case "MAY" -> month = 5;
+            case "JUNE" -> month = 6;
+            case "JULY" -> month = 7;
+            case "AUGUST" -> month = 8;
+            case "SEPTEMBER" -> month = 9;
+            case "OCTOBER" -> month = 10;
+            case "NOVEMBER" -> month = 11;
+            case "DECEMBER" -> month = 12;
+            default -> {
+            }
+                    
+        }
+        
+        
+        
+        YearMonth yearMonth = YearMonth.of(Integer.parseInt(enteredYear), month);
+        
+        numberOfDays = yearMonth.lengthOfMonth();
+        
+        for(int j = 1; j<=numberOfDays; j++ ){
+            dayCombo.addItem(String.valueOf(j));
+        }
+        
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +112,7 @@ public class StudentForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         yearCombo = new javax.swing.JComboBox<>();
         monthCombo = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        dayCombo = new javax.swing.JComboBox<>();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
@@ -132,9 +171,10 @@ public class StudentForm extends javax.swing.JFrame {
 
         monthCombo.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         monthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Month" }));
+        monthCombo.addActionListener(this::monthComboActionPerformed);
 
-        jComboBox3.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Day" }));
+        dayCombo.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        dayCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Day" }));
 
         jRadioButton1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jRadioButton1.setText("Male");
@@ -205,7 +245,7 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addGap(42, 42, 42)
                                 .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jRadioButton1)
                                 .addGap(18, 18, 18)
@@ -271,7 +311,7 @@ public class StudentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -307,9 +347,16 @@ public class StudentForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void yearComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboActionPerformed
-        String selectedYear = yearCombo.getSelectedItem().toString();
+        selectedYear = yearCombo.getSelectedItem().toString();
         loadMonths();
     }//GEN-LAST:event_yearComboActionPerformed
+
+    private void monthComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboActionPerformed
+        selectedMonth = monthCombo.getSelectedItem().toString();
+        dayCombo.removeAllItems();
+        dayCombo.addItem("Select Day");
+        loadDays(selectedMonth, selectedYear);
+    }//GEN-LAST:event_monthComboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,9 +386,9 @@ public class StudentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> dayCombo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
