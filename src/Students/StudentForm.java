@@ -8,12 +8,13 @@ import java.awt.event.ItemListener;
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.Calendar;
+import javax.swing.ButtonGroup;
 
 /**
  *
  * @author elisha
  */
-public class StudentForm extends javax.swing.JFrame {
+public final class StudentForm extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StudentForm.class.getName());
 
@@ -24,8 +25,13 @@ public class StudentForm extends javax.swing.JFrame {
         initComponents();
         
         loadYears();
-//        ItemListener aListener = null;
-//        yearCombo.addItemListener(aListener);
+        genderRadioGroup();
+    }
+    
+    public void genderRadioGroup(){
+        ButtonGroup genderGroup = new ButtonGroup();
+        genderGroup.add(maleRadioBtn);
+        genderGroup.add(femaleRadioBtn);
     }
     
     public final void loadYears(){
@@ -111,8 +117,8 @@ public class StudentForm extends javax.swing.JFrame {
         yearCombo = new javax.swing.JComboBox<>();
         monthCombo = new javax.swing.JComboBox<>();
         dayCombo = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        maleRadioBtn = new javax.swing.JRadioButton();
+        femaleRadioBtn = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
@@ -174,11 +180,11 @@ public class StudentForm extends javax.swing.JFrame {
         dayCombo.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         dayCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Day" }));
 
-        jRadioButton1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jRadioButton1.setText("Male");
+        maleRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        maleRadioBtn.setText("Male");
 
-        jRadioButton2.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jRadioButton2.setText("Female");
+        femaleRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        femaleRadioBtn.setText("Female");
 
         jLabel9.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel9.setText("Department");
@@ -245,9 +251,9 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addGap(39, 39, 39)
                                 .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(maleRadioBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2)
+                                .addComponent(femaleRadioBtn)
                                 .addGap(249, 249, 249)
                                 .addComponent(jLabel10))
                             .addGroup(layout.createSequentialGroup()
@@ -313,8 +319,8 @@ public class StudentForm extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
+                    .addComponent(maleRadioBtn)
+                    .addComponent(femaleRadioBtn)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,6 +391,7 @@ public class StudentForm extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> dayCombo;
+    private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -399,8 +406,6 @@ public class StudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
@@ -412,6 +417,7 @@ public class StudentForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JComboBox<String> monthCombo;
     private javax.swing.JComboBox<String> yearCombo;
     // End of variables declaration//GEN-END:variables
