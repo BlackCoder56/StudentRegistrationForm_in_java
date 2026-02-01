@@ -51,9 +51,9 @@ public class StudentForm extends javax.swing.JFrame {
     String selectedMonth;
     
     public void loadDays(String enteredmonth, String enteredYear){
-        int month = 1;
-        
+        int month = 1;        
         int numberOfDays = 0;
+        
         switch(enteredmonth){
             case "JANUARY" -> month = 1;
             case "FEBRUARY" -> month = 2;
@@ -71,9 +71,7 @@ public class StudentForm extends javax.swing.JFrame {
             }
                     
         }
-        
-        
-        
+      
         YearMonth yearMonth = YearMonth.of(Integer.parseInt(enteredYear), month);
         
         numberOfDays = yearMonth.lengthOfMonth();
