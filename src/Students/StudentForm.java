@@ -26,12 +26,22 @@ public final class StudentForm extends javax.swing.JFrame {
         
         loadYears();
         genderRadioGroup();
+        departmentRadioGroup();
     }
     
     public void genderRadioGroup(){
         ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(maleRadioBtn);
         genderGroup.add(femaleRadioBtn);
+    }
+    
+    public void departmentRadioGroup(){
+        ButtonGroup departmentGroup = new ButtonGroup();
+        departmentGroup.add(civilRadioBtn);
+        departmentGroup.add(cseRadioBtn);
+        departmentGroup.add(electricalRadioBtn);
+        departmentGroup.add(ecRadioBtn);
+        departmentGroup.add(mechanicalRadioBtn);
     }
     
     public final void loadYears(){
@@ -120,11 +130,11 @@ public final class StudentForm extends javax.swing.JFrame {
         maleRadioBtn = new javax.swing.JRadioButton();
         femaleRadioBtn = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
+        civilRadioBtn = new javax.swing.JRadioButton();
+        electricalRadioBtn = new javax.swing.JRadioButton();
+        cseRadioBtn = new javax.swing.JRadioButton();
+        mechanicalRadioBtn = new javax.swing.JRadioButton();
+        ecRadioBtn = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -189,20 +199,20 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel9.setText("Department");
 
-        jRadioButton3.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jRadioButton3.setText("Civil");
+        civilRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        civilRadioBtn.setText("Civil");
 
-        jRadioButton4.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jRadioButton4.setText("Electrocal");
+        electricalRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        electricalRadioBtn.setText("Electrical");
 
-        jRadioButton5.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jRadioButton5.setText("Computer Science & Engineering");
+        cseRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        cseRadioBtn.setText("Computer Science & Engineering");
 
-        jRadioButton6.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jRadioButton6.setText("Mechanical");
+        mechanicalRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        mechanicalRadioBtn.setText("Mechanical");
 
-        jRadioButton7.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jRadioButton7.setText("Electronics & Communication");
+        ecRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        ecRadioBtn.setText("Electronics & Communication");
 
         jButton1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jButton1.setText("Submit");
@@ -258,13 +268,13 @@ public final class StudentForm extends javax.swing.JFrame {
                                 .addComponent(jLabel10))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
-                                    .addComponent(jRadioButton5)
-                                    .addComponent(jRadioButton4)
-                                    .addComponent(jRadioButton7)
+                                    .addComponent(civilRadioBtn)
+                                    .addComponent(cseRadioBtn)
+                                    .addComponent(electricalRadioBtn)
+                                    .addComponent(ecRadioBtn)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadioButton6)
+                                            .addComponent(mechanicalRadioBtn)
                                             .addComponent(jButton1))
                                         .addGap(8, 8, 8)
                                         .addComponent(jButton2)))
@@ -327,15 +337,15 @@ public final class StudentForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jRadioButton3))
+                            .addComponent(civilRadioBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton5)
+                        .addComponent(cseRadioBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton4)
+                        .addComponent(electricalRadioBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton7)
+                        .addComponent(ecRadioBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton6)
+                        .addComponent(mechanicalRadioBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
@@ -390,7 +400,11 @@ public final class StudentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JRadioButton civilRadioBtn;
+    private javax.swing.JRadioButton cseRadioBtn;
     private javax.swing.JComboBox<String> dayCombo;
+    private javax.swing.JRadioButton ecRadioBtn;
+    private javax.swing.JRadioButton electricalRadioBtn;
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -406,11 +420,6 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
@@ -418,6 +427,7 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JRadioButton maleRadioBtn;
+    private javax.swing.JRadioButton mechanicalRadioBtn;
     private javax.swing.JComboBox<String> monthCombo;
     private javax.swing.JComboBox<String> yearCombo;
     // End of variables declaration//GEN-END:variables
