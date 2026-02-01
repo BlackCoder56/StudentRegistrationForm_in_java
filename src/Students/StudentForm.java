@@ -4,10 +4,9 @@
  */
 package Students;
 
-import java.awt.event.ItemListener;
+import java.awt.Color;
 import java.time.Month;
 import java.time.YearMonth;
-import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
@@ -82,6 +81,56 @@ public final class StudentForm extends javax.swing.JFrame {
             emailComfirm_txt.requestFocus();
         }
     }
+    
+    public void isEmptyField(){
+        if(firstname_txt.getText().isEmpty()){
+           errorLabel6.setText("This field is required!");
+           errorLabel6.setForeground(Color.RED);  
+           firstname_txt.requestFocus();
+        }else{
+            errorLabel6.setText("");
+        }
+        
+        if(lastname_txt.getText().isEmpty()){
+            errorLabel1.setText("This field is required!");
+            errorLabel1.setForeground(Color.RED);
+            lastname_txt.requestFocus();
+        }else{
+            errorLabel1.setText("");
+        }
+        
+        if(email_txt.getText().isEmpty()){
+            errorLabel2.setText("This field is required!");
+            errorLabel2.setForeground(Color.RED);
+            email_txt.requestFocus();
+        }else{
+            errorLabel2.setText("");
+        }
+        
+        if(emailComfirm_txt.getText().isEmpty()){
+            errorLabel3.setText("This field is required!");
+            errorLabel3.setForeground(Color.RED);
+            emailComfirm_txt.requestFocus();
+        }
+        
+        if(password_txt.getText().isEmpty()){
+            errorLabel4.setText("This field is required!");
+            errorLabel4.setForeground(Color.RED);
+            password_txt.requestFocus();
+        }else{
+            errorLabel4.setText("");
+        }
+        
+        if(comfirmpassword_txt.getText().isEmpty()){
+            errorLabel5.setText("This field is required!");
+            errorLabel5.setForeground(Color.RED);
+            comfirmpassword_txt.requestFocus();
+        }else{
+            errorLabel5.setText("");
+        }
+        
+    }
+    
     public void genderRadioGroup(){
         ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(maleRadioBtn);
@@ -166,11 +215,11 @@ public final class StudentForm extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        firstname_txt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         email_txt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        lastname_txt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         emailComfirm_txt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -189,11 +238,17 @@ public final class StudentForm extends javax.swing.JFrame {
         cseRadioBtn = new javax.swing.JRadioButton();
         mechanicalRadioBtn = new javax.swing.JRadioButton();
         ecRadioBtn = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        submit_btn = new javax.swing.JButton();
         cancel_btn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        errorLabel6 = new javax.swing.JLabel();
+        errorLabel1 = new javax.swing.JLabel();
+        errorLabel2 = new javax.swing.JLabel();
+        errorLabel3 = new javax.swing.JLabel();
+        errorLabel4 = new javax.swing.JLabel();
+        errorLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,7 +258,7 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel2.setText("Student First Name");
 
-        jTextField1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        firstname_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel3.setText("Student Last Name");
@@ -219,7 +274,8 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel4.setText("Email Address");
 
-        jTextField3.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        lastname_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        lastname_txt.addActionListener(this::lastname_txtActionPerformed);
 
         jLabel5.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel5.setText("Comfirm Email Address");
@@ -295,8 +351,13 @@ public final class StudentForm extends javax.swing.JFrame {
         ecRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         ecRadioBtn.setText("Electronics & Communication");
 
-        jButton1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jButton1.setText("Submit");
+        submit_btn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        submit_btn.setText("Submit");
+        submit_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                submit_btnMouseClicked(evt);
+            }
+        });
 
         cancel_btn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         cancel_btn.setText("Cancel");
@@ -315,6 +376,18 @@ public final class StudentForm extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        errorLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+
+        errorLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+
+        errorLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+
+        errorLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+
+        errorLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+
+        errorLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -331,41 +404,54 @@ public final class StudentForm extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(comfirmpassword_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                                .addComponent(password_txt, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(email_txt, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(emailComfirm_txt, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(maleRadioBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(femaleRadioBtn)
-                                .addGap(249, 249, 249)
-                                .addComponent(jLabel10))
-                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(civilRadioBtn)
-                                    .addComponent(cseRadioBtn)
-                                    .addComponent(electricalRadioBtn)
-                                    .addComponent(ecRadioBtn)
+                                    .addComponent(firstname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(comfirmpassword_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                                        .addComponent(password_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lastname_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(email_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(emailComfirm_txt, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(maleRadioBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(femaleRadioBtn)
+                                        .addGap(249, 249, 249)
+                                        .addComponent(jLabel10))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(mechanicalRadioBtn)
-                                            .addComponent(jButton1))
-                                        .addGap(8, 8, 8)
-                                        .addComponent(cancel_btn)))
-                                .addGap(28, 28, 28)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(civilRadioBtn)
+                                            .addComponent(cseRadioBtn)
+                                            .addComponent(electricalRadioBtn)
+                                            .addComponent(ecRadioBtn)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(mechanicalRadioBtn)
+                                                    .addComponent(submit_btn))
+                                                .addGap(8, 8, 8)
+                                                .addComponent(cancel_btn)))
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(errorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(errorLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(errorLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(errorLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(errorLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel9))
@@ -382,32 +468,40 @@ public final class StudentForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel3)
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                    .addComponent(firstname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(errorLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(7, 7, 7)
+                .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(emailComfirm_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(comfirmpassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(comfirmpassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,11 +529,11 @@ public final class StudentForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cancel_btn)
-                            .addComponent(jButton1))
+                            .addComponent(submit_btn))
                         .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(15, Short.MAX_VALUE))))
+                        .addContainerGap(9, Short.MAX_VALUE))))
         );
 
         pack();
@@ -504,6 +598,14 @@ public final class StudentForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancel_btnMouseClicked
 
+    private void submit_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_btnMouseClicked
+        isEmptyField();
+    }//GEN-LAST:event_submit_btnMouseClicked
+
+    private void lastname_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastname_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastname_txtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -541,8 +643,14 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton electricalRadioBtn;
     private javax.swing.JTextField emailComfirm_txt;
     private javax.swing.JTextField email_txt;
+    private javax.swing.JLabel errorLabel1;
+    private javax.swing.JLabel errorLabel2;
+    private javax.swing.JLabel errorLabel3;
+    private javax.swing.JLabel errorLabel4;
+    private javax.swing.JLabel errorLabel5;
+    private javax.swing.JLabel errorLabel6;
     private javax.swing.JRadioButton femaleRadioBtn;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField firstname_txt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -555,12 +663,12 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField lastname_txt;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JRadioButton mechanicalRadioBtn;
     private javax.swing.JComboBox<String> monthCombo;
     private javax.swing.JPasswordField password_txt;
+    private javax.swing.JButton submit_btn;
     private javax.swing.JComboBox<String> yearCombo;
     // End of variables declaration//GEN-END:variables
 }
