@@ -33,8 +33,24 @@ public final class StudentForm extends javax.swing.JFrame {
     }
     
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\\-+])(?=\\S+$).{8,20}$";
     String email;
     String comfirmEmail;
+    
+    String password;
+    String comfirmPassword;
+    
+    public boolean isValidPassword(){
+        password = password_txt.getText();
+        
+        if(password==null){
+            return false;
+        }
+        
+        Pattern pattern  = Pattern.compile(PASSWORD_REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
     public boolean isValidEmail(){
         email = email_txt.getText();
         
@@ -45,6 +61,16 @@ public final class StudentForm extends javax.swing.JFrame {
         Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+    
+    public void comfirmPassword(){
+        password = password_txt.getText();
+        comfirmPassword = comfirmpassword_txt.getText();
+        
+        if(!password.equals(comfirmPassword)){
+            JOptionPane.showMessageDialog(this, "Password Doesn't Match", "ERROR", JOptionPane.ERROR_MESSAGE);
+            comfirmpassword_txt.requestFocus();
+        }
     }
     
     public void comfirmEmail(){
@@ -148,9 +174,9 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         emailComfirm_txt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password_txt = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        comfirmpassword_txt = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         yearCombo = new javax.swing.JComboBox<>();
         monthCombo = new javax.swing.JComboBox<>();
@@ -164,7 +190,7 @@ public final class StudentForm extends javax.swing.JFrame {
         mechanicalRadioBtn = new javax.swing.JRadioButton();
         ecRadioBtn = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancel_btn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -209,23 +235,33 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel6.setText("Password");
 
-        jPasswordField1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        password_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        password_txt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPasswordField1MouseClicked(evt);
+                password_txtMouseClicked(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel7.setText("Comfrim Password");
+        jLabel7.setText("Comfirm Password");
 
-        jPasswordField2.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        comfirmpassword_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        comfirmpassword_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comfirmpassword_txtMouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jLabel8.setText("Date of Birth");
 
         yearCombo.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         yearCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Year" }));
+        yearCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                yearComboMouseClicked(evt);
+            }
+        });
         yearCombo.addActionListener(this::yearComboActionPerformed);
 
         monthCombo.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
@@ -262,8 +298,13 @@ public final class StudentForm extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         jButton1.setText("Submit");
 
-        jButton2.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jButton2.setText("Cancel");
+        cancel_btn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        cancel_btn.setText("Cancel");
+        cancel_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_btnMouseClicked(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Bitstream Charter", 1, 18)); // NOI18N
         jLabel10.setText("Your Data is Below:");
@@ -294,8 +335,8 @@ public final class StudentForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(comfirmpassword_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                                .addComponent(password_txt, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(email_txt, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(emailComfirm_txt, javax.swing.GroupLayout.Alignment.LEADING))
@@ -322,7 +363,7 @@ public final class StudentForm extends javax.swing.JFrame {
                                             .addComponent(mechanicalRadioBtn)
                                             .addComponent(jButton1))
                                         .addGap(8, 8, 8)
-                                        .addComponent(jButton2)))
+                                        .addComponent(cancel_btn)))
                                 .addGap(28, 28, 28)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
@@ -361,11 +402,11 @@ public final class StudentForm extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comfirmpassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,7 +434,7 @@ public final class StudentForm extends javax.swing.JFrame {
                         .addComponent(mechanicalRadioBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
+                            .addComponent(cancel_btn)
                             .addComponent(jButton1))
                         .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
@@ -442,9 +483,26 @@ public final class StudentForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_emailComfirm_txtMouseClicked
 
-    private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
+    private void password_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_password_txtMouseClicked
         comfirmEmail();
-    }//GEN-LAST:event_jPasswordField1MouseClicked
+    }//GEN-LAST:event_password_txtMouseClicked
+
+    private void comfirmpassword_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comfirmpassword_txtMouseClicked
+        boolean isValidPassword = isValidPassword();
+        
+        if(isValidPassword == false){
+            JOptionPane.showMessageDialog(this, "Enter a stronger Password.\n(8-20 characters, contain at least 1 letter and 1 digit)");
+            password_txt.requestFocus();
+        }
+    }//GEN-LAST:event_comfirmpassword_txtMouseClicked
+
+    private void yearComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yearComboMouseClicked
+        comfirmPassword();
+    }//GEN-LAST:event_yearComboMouseClicked
+
+    private void cancel_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_btnMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_cancel_btnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -474,7 +532,9 @@ public final class StudentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JButton cancel_btn;
     private javax.swing.JRadioButton civilRadioBtn;
+    private javax.swing.JPasswordField comfirmpassword_txt;
     private javax.swing.JRadioButton cseRadioBtn;
     private javax.swing.JComboBox<String> dayCombo;
     private javax.swing.JRadioButton ecRadioBtn;
@@ -483,7 +543,6 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JTextField email_txt;
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -494,8 +553,6 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
@@ -503,6 +560,7 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JRadioButton mechanicalRadioBtn;
     private javax.swing.JComboBox<String> monthCombo;
+    private javax.swing.JPasswordField password_txt;
     private javax.swing.JComboBox<String> yearCombo;
     // End of variables declaration//GEN-END:variables
 }
