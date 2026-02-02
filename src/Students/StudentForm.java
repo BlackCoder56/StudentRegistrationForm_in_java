@@ -10,6 +10,7 @@ import java.time.YearMonth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +32,8 @@ public final class StudentForm extends javax.swing.JFrame {
         departmentRadioGroup();
     }
     
+    ButtonGroup genderGroup = new ButtonGroup();
+    ButtonGroup departmentGroup = new ButtonGroup();
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\\-+])(?=\\S+$).{8,20}$";
     String email;
@@ -123,16 +126,39 @@ public final class StudentForm extends javax.swing.JFrame {
             errorLabel5.setText("");
         }
         
+        if(yearCombo.getSelectedItem()=="Select Year"){
+            dob_error_label.setText("Please Select All Age Fields.");
+            dob_error_label.setForeground(Color.RED);
+        }else{
+            dob_error_label.setText("");
+        }
+        if(monthCombo.getSelectedItem()=="Select Year"){
+            dob_error_label.setText("Please Select All Age Fields.");
+            dob_error_label.setForeground(Color.RED);
+        }else{
+            dob_error_label.setText("");
+        }
+        if(dayCombo.getSelectedItem()=="Select Day"){
+            dob_error_label.setText("Please Select All Age Fields.");
+            dob_error_label.setForeground(Color.RED);
+        }else{
+            dob_error_label.setText("");
+        }        
+        
+    }
+    
+    public boolean checkSelectedStatus(ButtonGroup buttonGroup){
+        ButtonModel selectedModel = buttonGroup.getSelection();
+        
+        return selectedModel!=null;
     }
     
     public void genderRadioGroup(){
-        ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(maleRadioBtn);
         genderGroup.add(femaleRadioBtn);
     }
     
     public void departmentRadioGroup(){
-        ButtonGroup departmentGroup = new ButtonGroup();
         departmentGroup.add(civilRadioBtn);
         departmentGroup.add(cseRadioBtn);
         departmentGroup.add(electricalRadioBtn);
@@ -243,6 +269,9 @@ public final class StudentForm extends javax.swing.JFrame {
         errorLabel3 = new javax.swing.JLabel();
         errorLabel4 = new javax.swing.JLabel();
         errorLabel5 = new javax.swing.JLabel();
+        dob_error_label = new javax.swing.JLabel();
+        genderError_label = new javax.swing.JLabel();
+        departmentError_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -414,12 +443,16 @@ public final class StudentForm extends javax.swing.JFrame {
                                         .addGap(42, 42, 42)
                                         .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(39, 39, 39)
-                                        .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(dob_error_label, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(maleRadioBtn)
                                         .addGap(18, 18, 18)
                                         .addComponent(femaleRadioBtn)
-                                        .addGap(249, 249, 249)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(genderError_label, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(87, 87, 87)
                                         .addComponent(jLabel10))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,7 +465,8 @@ public final class StudentForm extends javax.swing.JFrame {
                                                     .addComponent(mechanicalRadioBtn)
                                                     .addComponent(submit_btn))
                                                 .addGap(8, 8, 8)
-                                                .addComponent(cancel_btn)))
+                                                .addComponent(cancel_btn))
+                                            .addComponent(departmentError_label, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(28, 28, 28)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
@@ -463,7 +497,7 @@ public final class StudentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstname_label)
                     .addComponent(firstname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(9, 9, 9)
                 .addComponent(errorLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -500,12 +534,14 @@ public final class StudentForm extends javax.swing.JFrame {
                     .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dob_label))
+                    .addComponent(dob_label)
+                    .addComponent(dob_error_label, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maleRadioBtn)
                     .addComponent(femaleRadioBtn)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(genderError_label, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -520,14 +556,16 @@ public final class StudentForm extends javax.swing.JFrame {
                         .addComponent(ecRadioBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mechanicalRadioBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(departmentError_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cancel_btn)
                             .addComponent(submit_btn))
                         .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(9, Short.MAX_VALUE))))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
 
         pack();
@@ -592,13 +630,29 @@ public final class StudentForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancel_btnMouseClicked
 
-    private void submit_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_btnMouseClicked
-        isEmptyField();
-    }//GEN-LAST:event_submit_btnMouseClicked
-
     private void lastname_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastname_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lastname_txtActionPerformed
+
+    private void submit_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_btnMouseClicked
+        isEmptyField();
+        boolean genderStatus = checkSelectedStatus(genderGroup);
+        boolean dapartment = checkSelectedStatus(departmentGroup);
+
+        if(genderStatus==false){
+            genderError_label.setText("Please Select your Gender.");
+            genderError_label.setForeground(Color.RED);
+        } else{
+            genderError_label.setText("");
+        }
+
+        if(dapartment==false){
+            departmentError_label.setText("Please Select atleast one Department!");
+            departmentError_label.setForeground(Color.RED);
+        } else{
+            departmentError_label.setText("");
+        }
+    }//GEN-LAST:event_submit_btnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -635,7 +689,9 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField comfirmpassword_txt;
     private javax.swing.JRadioButton cseRadioBtn;
     private javax.swing.JComboBox<String> dayCombo;
+    private javax.swing.JLabel departmentError_label;
     private javax.swing.JLabel department_label;
+    private javax.swing.JLabel dob_error_label;
     private javax.swing.JLabel dob_label;
     private javax.swing.JRadioButton ecRadioBtn;
     private javax.swing.JRadioButton electricalRadioBtn;
@@ -651,6 +707,7 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JLabel firstname_label;
     private javax.swing.JTextField firstname_txt;
+    private javax.swing.JLabel genderError_label;
     private javax.swing.JLabel heading;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JScrollPane jScrollPane1;
