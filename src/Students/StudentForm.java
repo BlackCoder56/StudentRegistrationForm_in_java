@@ -57,33 +57,44 @@ public final class StudentForm extends javax.swing.JFrame {
     String password;
     String comfirmPassword;
     
-    public void SaveToCSV(){
+    public void SaveToCSV() {
+
         String filePath = "src/data/students.csv";
-        
-        File csvFile  = new File(filePath);
-        
+        File csvFile = new File(filePath);
+
         try {
             File parentDir = csvFile.getParentFile();
-            
-            if (parentDir != null && !parentDir.exists()){
+            if (parentDir != null && !parentDir.exists()) {
                 parentDir.mkdirs();
             }
-            
-            if(!csvFile.exists()){
-                csvFile.createNewFile();
+
+            boolean fileExists = csvFile.exists();
+
+            FileWriter writer = new FileWriter(csvFile, true);
+
+            // write header ONLY once (when file did not exist)
+            if (!fileExists) {
+                writer.append("First Name,Last Name,Email,Password,DOB,Gender,Department\n");
             }
-            
-            FileWriter writer  = new FileWriter(csvFile, true);
-            writer.append("\n\n     First Name:       "+FirstName+"\n");
-            writer.append("     Last Name:        "+LastName+"\n");
-            writer.append("     Email Address:  "+Email+"\n");
-            writer.append("     Password:         "+Password+"\n");
-            writer.append("     D.O.Birth:         "+DOB+"\n");
-            writer.append("     Gender:            "+Gender+"\n");
-            writer.append("     Department:     "+Department+"\n");
+
+            // always write data (submit button triggers this method)
+            writer.append(
+                FirstName + "," +
+                LastName + "," +
+                Email + "," +
+                Password + "," +
+                DOB + "," +
+                Gender + "," +
+                Department + "\n"
+            );
+
+            writer.flush();
+            writer.close();
+
         } catch (IOException e) {
         }
     }
+
     
     public void GetInputedData(){
         displayData_textArea.setText(
