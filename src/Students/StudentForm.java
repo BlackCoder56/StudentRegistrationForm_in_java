@@ -94,6 +94,33 @@ public final class StudentForm extends javax.swing.JFrame {
         } catch (IOException e) {
         }
     }
+    
+    
+    public void clearAllFields() {
+
+        // -------- TEXT FIELDS --------
+        firstname_txt.setText("");
+        lastname_txt.setText("");
+        email_txt.setText("");
+        emailComfirm_txt.setText("");
+        password_txt.setText("");
+        comfirmpassword_txt.setText("");
+
+        // -------- COMBO BOXES --------
+        yearCombo.setSelectedIndex(0);
+        monthCombo.removeAllItems();
+        monthCombo.addItem("Select Month");
+        dayCombo.removeAllItems();
+        dayCombo.addItem("Select Day");
+
+        // -------- RADIO BUTTONS --------
+        genderGroup.clearSelection();
+        departmentGroup.clearSelection();
+
+//        // -------- OUTPUT AREA --------
+//        displayData_textArea.setText("");
+}
+
 
     
     public void GetInputedData(){
