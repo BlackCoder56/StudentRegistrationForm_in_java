@@ -5,6 +5,9 @@
 package Students;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.regex.Matcher;
@@ -53,6 +56,34 @@ public final class StudentForm extends javax.swing.JFrame {
     
     String password;
     String comfirmPassword;
+    
+    public void SaveToCSV(){
+        String filePath = "src/data/students.csv";
+        
+        File csvFile  = new File(filePath);
+        
+        try {
+            File parentDir = csvFile.getParentFile();
+            
+            if (parentDir != null && !parentDir.exists()){
+                parentDir.mkdirs();
+            }
+            
+            if(!csvFile.exists()){
+                csvFile.createNewFile();
+            }
+            
+            FileWriter writer  = new FileWriter(csvFile, true);
+            writer.append("\n\n     First Name:       "+FirstName+"\n");
+            writer.append("     Last Name:        "+LastName+"\n");
+            writer.append("     Email Address:  "+Email+"\n");
+            writer.append("     Password:         "+Password+"\n");
+            writer.append("     D.O.Birth:         "+DOB+"\n");
+            writer.append("     Gender:            "+Gender+"\n");
+            writer.append("     Department:     "+Department+"\n");
+        } catch (IOException e) {
+        }
+    }
     
     public void GetInputedData(){
         displayData_textArea.setText(
@@ -737,6 +768,7 @@ public final class StudentForm extends javax.swing.JFrame {
             comfirmPassword();
             collectValidInputs();
             GetInputedData();   // ✅ only runs if ALL checks pass
+            SaveToCSV();
         } 
 //        else {
 //            displayData_textArea.setText(""); // optional: clear old data
