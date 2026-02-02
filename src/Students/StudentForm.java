@@ -86,7 +86,6 @@ public final class StudentForm extends javax.swing.JFrame {
         if(firstname_txt.getText().isEmpty()){
            errorLabel6.setText("This field is required!");
            errorLabel6.setForeground(Color.RED);  
-           firstname_txt.requestFocus();
         }else{
             errorLabel6.setText("");
         }
@@ -94,7 +93,6 @@ public final class StudentForm extends javax.swing.JFrame {
         if(lastname_txt.getText().isEmpty()){
             errorLabel1.setText("This field is required!");
             errorLabel1.setForeground(Color.RED);
-            lastname_txt.requestFocus();
         }else{
             errorLabel1.setText("");
         }
@@ -102,7 +100,6 @@ public final class StudentForm extends javax.swing.JFrame {
         if(email_txt.getText().isEmpty()){
             errorLabel2.setText("This field is required!");
             errorLabel2.setForeground(Color.RED);
-            email_txt.requestFocus();
         }else{
             errorLabel2.setText("");
         }
@@ -110,13 +107,11 @@ public final class StudentForm extends javax.swing.JFrame {
         if(emailComfirm_txt.getText().isEmpty()){
             errorLabel3.setText("This field is required!");
             errorLabel3.setForeground(Color.RED);
-            emailComfirm_txt.requestFocus();
         }
         
         if(password_txt.getText().isEmpty()){
             errorLabel4.setText("This field is required!");
             errorLabel4.setForeground(Color.RED);
-            password_txt.requestFocus();
         }else{
             errorLabel4.setText("");
         }
@@ -124,7 +119,6 @@ public final class StudentForm extends javax.swing.JFrame {
         if(comfirmpassword_txt.getText().isEmpty()){
             errorLabel5.setText("This field is required!");
             errorLabel5.setForeground(Color.RED);
-            comfirmpassword_txt.requestFocus();
         }else{
             errorLabel5.setText("");
         }
@@ -213,26 +207,26 @@ public final class StudentForm extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        heading = new javax.swing.JLabel();
+        firstname_label = new javax.swing.JLabel();
         firstname_txt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lastname_label = new javax.swing.JLabel();
         email_txt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        emailAddress_label = new javax.swing.JLabel();
         lastname_txt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        comfirmEmailAddress_label = new javax.swing.JLabel();
         emailComfirm_txt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        password_label = new javax.swing.JLabel();
         password_txt = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
+        comfirmpassword_label = new javax.swing.JLabel();
         comfirmpassword_txt = new javax.swing.JPasswordField();
-        jLabel8 = new javax.swing.JLabel();
+        dob_label = new javax.swing.JLabel();
         yearCombo = new javax.swing.JComboBox<>();
         monthCombo = new javax.swing.JComboBox<>();
         dayCombo = new javax.swing.JComboBox<>();
         maleRadioBtn = new javax.swing.JRadioButton();
         femaleRadioBtn = new javax.swing.JRadioButton();
-        jLabel9 = new javax.swing.JLabel();
+        department_label = new javax.swing.JLabel();
         civilRadioBtn = new javax.swing.JRadioButton();
         electricalRadioBtn = new javax.swing.JRadioButton();
         cseRadioBtn = new javax.swing.JRadioButton();
@@ -252,16 +246,16 @@ public final class StudentForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        jLabel1.setText("New Student Registration Form");
+        heading.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        heading.setText("New Student Registration Form");
 
-        jLabel2.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel2.setText("Student First Name");
+        firstname_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        firstname_label.setText("Student First Name");
 
         firstname_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel3.setText("Student Last Name");
+        lastname_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        lastname_label.setText("Student Last Name");
 
         email_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         email_txt.addActionListener(this::email_txtActionPerformed);
@@ -271,14 +265,14 @@ public final class StudentForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel4.setText("Email Address");
+        emailAddress_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        emailAddress_label.setText("Email Address");
 
         lastname_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         lastname_txt.addActionListener(this::lastname_txtActionPerformed);
 
-        jLabel5.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel5.setText("Comfirm Email Address");
+        comfirmEmailAddress_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        comfirmEmailAddress_label.setText("Comfirm Email Address");
 
         emailComfirm_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         emailComfirm_txt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -288,8 +282,8 @@ public final class StudentForm extends javax.swing.JFrame {
         });
         emailComfirm_txt.addActionListener(this::emailComfirm_txtActionPerformed);
 
-        jLabel6.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel6.setText("Password");
+        password_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        password_label.setText("Password");
 
         password_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         password_txt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -298,8 +292,8 @@ public final class StudentForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel7.setText("Comfirm Password");
+        comfirmpassword_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        comfirmpassword_label.setText("Comfirm Password");
 
         comfirmpassword_txt.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         comfirmpassword_txt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -308,8 +302,8 @@ public final class StudentForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel8.setText("Date of Birth");
+        dob_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        dob_label.setText("Date of Birth");
 
         yearCombo.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         yearCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Year" }));
@@ -333,8 +327,8 @@ public final class StudentForm extends javax.swing.JFrame {
         femaleRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         femaleRadioBtn.setText("Female");
 
-        jLabel9.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jLabel9.setText("Department");
+        department_label.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        department_label.setText("Department");
 
         civilRadioBtn.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         civilRadioBtn.setText("Civil");
@@ -397,13 +391,13 @@ public final class StudentForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(firstname_label)
+                            .addComponent(lastname_label)
+                            .addComponent(emailAddress_label)
+                            .addComponent(comfirmEmailAddress_label)
+                            .addComponent(password_label)
+                            .addComponent(comfirmpassword_label)
+                            .addComponent(dob_label))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -454,51 +448,51 @@ public final class StudentForm extends javax.swing.JFrame {
                                 .addComponent(errorLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel9))
+                        .addComponent(department_label))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(277, 277, 277)
-                        .addComponent(jLabel1)))
+                        .addComponent(heading)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addComponent(heading)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(firstname_label)
                     .addComponent(firstname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errorLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastname_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(lastname_label))
                 .addGap(7, 7, 7)
                 .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                    .addComponent(emailAddress_label)
                     .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(comfirmEmailAddress_label)
                     .addComponent(emailComfirm_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(password_label)
                     .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comfirmpassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(comfirmpassword_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
@@ -506,7 +500,7 @@ public final class StudentForm extends javax.swing.JFrame {
                     .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(dob_label))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maleRadioBtn)
@@ -516,7 +510,7 @@ public final class StudentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
+                            .addComponent(department_label)
                             .addComponent(civilRadioBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cseRadioBtn)
@@ -636,11 +630,16 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton cancel_btn;
     private javax.swing.JRadioButton civilRadioBtn;
+    private javax.swing.JLabel comfirmEmailAddress_label;
+    private javax.swing.JLabel comfirmpassword_label;
     private javax.swing.JPasswordField comfirmpassword_txt;
     private javax.swing.JRadioButton cseRadioBtn;
     private javax.swing.JComboBox<String> dayCombo;
+    private javax.swing.JLabel department_label;
+    private javax.swing.JLabel dob_label;
     private javax.swing.JRadioButton ecRadioBtn;
     private javax.swing.JRadioButton electricalRadioBtn;
+    private javax.swing.JLabel emailAddress_label;
     private javax.swing.JTextField emailComfirm_txt;
     private javax.swing.JTextField email_txt;
     private javax.swing.JLabel errorLabel1;
@@ -650,23 +649,18 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel errorLabel5;
     private javax.swing.JLabel errorLabel6;
     private javax.swing.JRadioButton femaleRadioBtn;
+    private javax.swing.JLabel firstname_label;
     private javax.swing.JTextField firstname_txt;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel heading;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lastname_label;
     private javax.swing.JTextField lastname_txt;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JRadioButton mechanicalRadioBtn;
     private javax.swing.JComboBox<String> monthCombo;
+    private javax.swing.JLabel password_label;
     private javax.swing.JPasswordField password_txt;
     private javax.swing.JButton submit_btn;
     private javax.swing.JComboBox<String> yearCombo;
