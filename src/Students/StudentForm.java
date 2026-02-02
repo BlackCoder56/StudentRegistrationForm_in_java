@@ -56,13 +56,13 @@ public final class StudentForm extends javax.swing.JFrame {
     
     public void GetInputedData(){
         displayData_textArea.setText(
-                "First Name: "+FirstName+"\n"+
-                "Last Name: "+LastName+"\n"+
-                "Email Address: "+Email+"\n"+
-                "Password: "+Password+"\n"+
-                "D.O.Birth: "+DOB+"\n"+
-                "Gender: "+Gender+"\n"+
-                "Department: "+Department+"\n"
+                "\n\n     First Name:       "+FirstName+"\n"+
+                "     Last Name:        "+LastName+"\n"+
+                "     Email Address:  "+Email+"\n"+
+                "     Password:         "+Password+"\n"+
+                "     D.O.Birth:         "+DOB+"\n"+
+                "     Gender:            "+Gender+"\n"+
+                "     Department:     "+Department+"\n"
         );
     }
     
@@ -179,14 +179,6 @@ public final class StudentForm extends javax.swing.JFrame {
         }
 
         if(emailComfirm_txt.getText().isEmpty()){
-            errorLabel3.setText("This field is required!");
-            errorLabel3.setForeground(Color.RED);
-            valid = false;
-        } else {
-            errorLabel3.setText("");
-        }
-
-        if(password_txt.getText().isEmpty()){
             errorLabel4.setText("This field is required!");
             errorLabel4.setForeground(Color.RED);
             valid = false;
@@ -194,12 +186,20 @@ public final class StudentForm extends javax.swing.JFrame {
             errorLabel4.setText("");
         }
 
-        if(comfirmpassword_txt.getText().isEmpty()){
+        if(password_txt.getText().isEmpty()){
             errorLabel5.setText("This field is required!");
             errorLabel5.setForeground(Color.RED);
             valid = false;
         } else {
             errorLabel5.setText("");
+        }
+
+        if(comfirmpassword_txt.getText().isEmpty()){
+            errorLabel3.setText("This field is required!");
+            errorLabel3.setForeground(Color.RED);
+            valid = false;
+        } else {
+            errorLabel3.setText("");
         }
 
         if(yearCombo.getSelectedItem().equals("Select Year")
@@ -490,6 +490,7 @@ public final class StudentForm extends javax.swing.JFrame {
         displayData_textArea.setColumns(20);
         displayData_textArea.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
         displayData_textArea.setRows(5);
+        displayData_textArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(displayData_textArea);
 
         errorLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
