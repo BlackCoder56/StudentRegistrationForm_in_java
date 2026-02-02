@@ -31,6 +31,18 @@ public final class StudentForm extends javax.swing.JFrame {
         genderRadioGroup();
         departmentRadioGroup();
     }
+
+    
+//    Global variables declaration
+    
+    // Variables to store valid entered inputs
+    String FirstName;
+    String LastName;
+    String Email;
+    String Password;
+    String DOB;
+    String Gender;
+    String Department;
     
     ButtonGroup genderGroup = new ButtonGroup();
     ButtonGroup departmentGroup = new ButtonGroup();
@@ -41,6 +53,53 @@ public final class StudentForm extends javax.swing.JFrame {
     
     String password;
     String comfirmPassword;
+    
+    public void GetInputedData(){
+        displayData_textArea.setText(
+                "First Name: "+FirstName+"\n"+
+                "Last Name: "+LastName+"\n"+
+                "Email Address: "+Email+"\n"+
+                "Password: "+Password+"\n"+
+                "D.O.Birth: "+DOB+"\n"+
+                "Gender: "+Gender+"\n"+
+                "Department: "+Department+"\n"
+        );
+    }
+    
+//   CollectValidInputs
+    public void collectValidInputs() {
+
+        FirstName = firstname_txt.getText().trim();
+        LastName  = lastname_txt.getText().trim();
+        Email     = emailComfirm_txt.getText().trim();
+        Password  = new String(comfirmpassword_txt.getPassword());
+
+        String year  = yearCombo.getSelectedItem().toString();
+        String month = monthCombo.getSelectedItem().toString();
+        String day   = dayCombo.getSelectedItem().toString();
+
+        DOB = day + "-" + month + "-" + year;
+
+        if (maleRadioBtn.isSelected()) {
+            Gender = "Male";
+        } else if (femaleRadioBtn.isSelected()) {
+            Gender = "Female";
+        }
+
+
+        if (civilRadioBtn.isSelected()) {
+            Department = "Civil";
+        } else if (cseRadioBtn.isSelected()) {
+            Department = "Computer Science & Engineering";
+        } else if (electricalRadioBtn.isSelected()) {
+            Department = "Electrical";
+        } else if (ecRadioBtn.isSelected()) {
+            Department = "Electronics & Communication";
+        } else if (mechanicalRadioBtn.isSelected()) {
+            Department = "Mechanical";
+        }
+    }
+
     
     public boolean isValidPassword(){
         password = password_txt.getText();
@@ -53,6 +112,7 @@ public final class StudentForm extends javax.swing.JFrame {
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
+    
     public boolean isValidEmail(){
         email = email_txt.getText();
         
@@ -67,91 +127,124 @@ public final class StudentForm extends javax.swing.JFrame {
     
     public void comfirmPassword(){
         password = password_txt.getText();
-        comfirmPassword = comfirmpassword_txt.getText();
+        comfirmPassword = comfirmpassword_txt.getText().trim();
         
         if(!password.equals(comfirmPassword)){
             JOptionPane.showMessageDialog(this, "Password Doesn't Match", "ERROR", JOptionPane.ERROR_MESSAGE);
             comfirmpassword_txt.requestFocus();
+        }else{
+          Password = comfirmPassword;
         }
     }
     
     public void comfirmEmail(){
         email = email_txt.getText();
-        comfirmEmail = emailComfirm_txt.getText();
+        comfirmEmail = emailComfirm_txt.getText().trim();
         
         if(!email.equals(comfirmEmail)){
             JOptionPane.showMessageDialog(this, "Email Address does't Match", "ERROR", JOptionPane.ERROR_MESSAGE);
             emailComfirm_txt.requestFocus();
+        }else {
+             Email = comfirmEmail;
         }
     }
     
-    public void isEmptyField(){
+    public boolean isEmptyField(){
+        boolean valid = true;
+
         if(firstname_txt.getText().isEmpty()){
-           errorLabel6.setText("This field is required!");
-           errorLabel6.setForeground(Color.RED);  
-        }else{
+            errorLabel6.setText("This field is required!");
+            errorLabel6.setForeground(Color.RED);
+            valid = false;
+        } else {
+            FirstName = firstname_txt.getText().trim();
             errorLabel6.setText("");
         }
-        
+
         if(lastname_txt.getText().isEmpty()){
             errorLabel1.setText("This field is required!");
             errorLabel1.setForeground(Color.RED);
-        }else{
+            valid = false;
+        } else {
+            LastName = lastname_txt.getText().trim();
             errorLabel1.setText("");
         }
-        
+
         if(email_txt.getText().isEmpty()){
             errorLabel2.setText("This field is required!");
             errorLabel2.setForeground(Color.RED);
-        }else{
+            valid = false;
+        } else {
             errorLabel2.setText("");
         }
-        
+
         if(emailComfirm_txt.getText().isEmpty()){
             errorLabel3.setText("This field is required!");
             errorLabel3.setForeground(Color.RED);
+            valid = false;
+        } else {
+            errorLabel3.setText("");
         }
-        
+
         if(password_txt.getText().isEmpty()){
             errorLabel4.setText("This field is required!");
             errorLabel4.setForeground(Color.RED);
-        }else{
+            valid = false;
+        } else {
             errorLabel4.setText("");
         }
-        
+
         if(comfirmpassword_txt.getText().isEmpty()){
             errorLabel5.setText("This field is required!");
             errorLabel5.setForeground(Color.RED);
-        }else{
+            valid = false;
+        } else {
             errorLabel5.setText("");
         }
-        
-        if(yearCombo.getSelectedItem()=="Select Year"){
+
+        if(yearCombo.getSelectedItem().equals("Select Year")
+            || monthCombo.getSelectedItem().equals("Select Month")
+            || dayCombo.getSelectedItem().equals("Select Day")){
             dob_error_label.setText("Please Select All Age Fields.");
             dob_error_label.setForeground(Color.RED);
-        }else{
+            valid = false;
+        } else {
             dob_error_label.setText("");
         }
-        if(monthCombo.getSelectedItem()=="Select Year"){
-            dob_error_label.setText("Please Select All Age Fields.");
-            dob_error_label.setForeground(Color.RED);
-        }else{
-            dob_error_label.setText("");
-        }
-        if(dayCombo.getSelectedItem()=="Select Day"){
-            dob_error_label.setText("Please Select All Age Fields.");
-            dob_error_label.setForeground(Color.RED);
-        }else{
-            dob_error_label.setText("");
-        }        
-        
+
+        return valid;
     }
+
     
     public boolean checkSelectedStatus(ButtonGroup buttonGroup){
         ButtonModel selectedModel = buttonGroup.getSelection();
         
         return selectedModel!=null;
     }
+    
+//    Radio Buttons
+    public boolean checkRadioButton(){
+        boolean valid = true;
+
+        if(!checkSelectedStatus(genderGroup)){
+            genderError_label.setText("Please Select your Gender.");
+            genderError_label.setForeground(Color.RED);
+            valid = false;
+        } else {
+            genderError_label.setText("");
+        }
+
+        if(!checkSelectedStatus(departmentGroup)){
+            departmentError_label.setText("Please Select at least one Department!");
+            departmentError_label.setForeground(Color.RED);
+            valid = false;
+        } else {
+            departmentError_label.setText("");
+        }
+
+        return valid;
+    }
+
     
     public void genderRadioGroup(){
         genderGroup.add(maleRadioBtn);
@@ -262,7 +355,7 @@ public final class StudentForm extends javax.swing.JFrame {
         cancel_btn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        displayData_textArea = new javax.swing.JTextArea();
         errorLabel6 = new javax.swing.JLabel();
         errorLabel1 = new javax.swing.JLabel();
         errorLabel2 = new javax.swing.JLabel();
@@ -393,11 +486,11 @@ public final class StudentForm extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Bitstream Charter", 1, 18)); // NOI18N
         jLabel10.setText("Your Data is Below:");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        displayData_textArea.setEditable(false);
+        displayData_textArea.setColumns(20);
+        displayData_textArea.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        displayData_textArea.setRows(5);
+        jScrollPane1.setViewportView(displayData_textArea);
 
         errorLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
 
@@ -635,23 +728,18 @@ public final class StudentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_lastname_txtActionPerformed
 
     private void submit_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_btnMouseClicked
-        isEmptyField();
-        boolean genderStatus = checkSelectedStatus(genderGroup);
-        boolean dapartment = checkSelectedStatus(departmentGroup);
+        boolean fieldsOk = isEmptyField();
+        boolean radiosOk = checkRadioButton();
 
-        if(genderStatus==false){
-            genderError_label.setText("Please Select your Gender.");
-            genderError_label.setForeground(Color.RED);
-        } else{
-            genderError_label.setText("");
-        }
-
-        if(dapartment==false){
-            departmentError_label.setText("Please Select atleast one Department!");
-            departmentError_label.setForeground(Color.RED);
-        } else{
-            departmentError_label.setText("");
-        }
+        if(fieldsOk && radiosOk){
+            comfirmEmail();
+            comfirmPassword();
+            collectValidInputs();
+            GetInputedData();   // ✅ only runs if ALL checks pass
+        } 
+//        else {
+//            displayData_textArea.setText(""); // optional: clear old data
+//        }
     }//GEN-LAST:event_submit_btnMouseClicked
 
     /**
@@ -691,6 +779,7 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dayCombo;
     private javax.swing.JLabel departmentError_label;
     private javax.swing.JLabel department_label;
+    private javax.swing.JTextArea displayData_textArea;
     private javax.swing.JLabel dob_error_label;
     private javax.swing.JLabel dob_label;
     private javax.swing.JRadioButton ecRadioBtn;
@@ -711,7 +800,6 @@ public final class StudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel heading;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lastname_label;
     private javax.swing.JTextField lastname_txt;
     private javax.swing.JRadioButton maleRadioBtn;
