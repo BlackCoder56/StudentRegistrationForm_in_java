@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Month;
+import java.time.Year;
 import java.time.YearMonth;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
@@ -47,6 +49,9 @@ public final class StudentForm extends javax.swing.JFrame {
     String Gender;
     String Department;
     
+    // Variable to store generated student ID
+    String GeneratedID;
+    
     ButtonGroup genderGroup = new ButtonGroup();
     ButtonGroup departmentGroup = new ButtonGroup();
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
@@ -56,6 +61,21 @@ public final class StudentForm extends javax.swing.JFrame {
     
     String password;
     String comfirmPassword;
+    
+//    ID: 2026-00023
+    public void generateID(){
+       
+        int currentYear = Year.now().getValue();
+        
+//        createing random rumber
+        Random random = new Random();
+        int min = 10000;
+        int max = 99999;
+        int randomNumber = random.nextInt(min, max);
+        
+        GeneratedID = String.valueOf(currentYear) + "-" + String.valueOf(randomNumber);
+     
+    }
     
     public void SaveToCSV() {
 
@@ -74,11 +94,12 @@ public final class StudentForm extends javax.swing.JFrame {
 
             // write header ONLY once (when file did not exist)
             if (!fileExists) {
-                writer.append("First Name,Last Name,Email,Password,DOB,Gender,Department\n");
+                writer.append("Student ID,First Name,Last Name,Email,Password,DOB,Gender,Department\n");
             }
 
             // always write data (submit button triggers this method)
             writer.append(
+                GeneratedID + "," +
                 FirstName + "," +
                 LastName + "," +
                 Email + "," +
@@ -121,17 +142,16 @@ public final class StudentForm extends javax.swing.JFrame {
 //        displayData_textArea.setText("");
 }
 
-
-    
     public void GetInputedData(){
         displayData_textArea.setText(
-                "\n\n     First Name:       "+FirstName+"\n"+
-                "     Last Name:        "+LastName+"\n"+
-                "     Email Address:  "+Email+"\n"+
-                "     Password:         "+Password+"\n"+
-                "     D.O.Birth:         "+DOB+"\n"+
-                "     Gender:            "+Gender+"\n"+
-                "     Department:     "+Department+"\n"
+                "\n        Student ID:       "+GeneratedID+"\n"+
+                "        First Name:       "+FirstName+"\n"+
+                "        Last Name:        "+LastName+"\n"+
+                "        Email Address:  "+Email+"\n"+
+                "        Password:         "+Password+"\n"+
+                "        D.O.Birth:         "+DOB+"\n"+
+                "        Gender:            "+Gender+"\n"+
+                "        Department:     "+Department+"\n"
         );
     }
     
@@ -379,8 +399,7 @@ public final class StudentForm extends javax.swing.JFrame {
         
         for(int j = 1; j<=numberOfDays; j++ ){
             dayCombo.addItem(String.valueOf(j));
-        }
-        
+        }  
         
     }
 
@@ -693,12 +712,13 @@ public final class StudentForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dob_label)
-                    .addComponent(dob_error_label, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dob_error_label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dob_label)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maleRadioBtn)
@@ -804,6 +824,7 @@ public final class StudentForm extends javax.swing.JFrame {
         if(fieldsOk && radiosOk){
             comfirmEmail();
             comfirmPassword();
+            generateID();
             collectValidInputs();
             GetInputedData();   // ✅ only runs if ALL checks pass
             SaveToCSV();

@@ -1,3 +1,3 @@
-First Name,Last Name,Email,Password,DOB,Gender,Department
-Jane,Doe,johndoe@gmail.com,1q2w3e4r5t^Y,9-OCTOBER-1969,Female,Computer Science & Engineering
-John,Doe,johndoe@gmail.com,1q2w3e4r5t^Y,18-JANUARY-1985,Male,Electrical
+Student ID,First Name,Last Name,Email,Password,DOB,Gender,Department
+2026-64889,John,Doe,johndoe@gmail.com,q1w2e3r4t5Y^,3-AUGUST-1978,Male,Mechanical
+2026-74868,Jean,Doe,jeandoe@gmail.com,q1w2e3r4t5Y^,9-OCTOBER-1978,Female,Civil

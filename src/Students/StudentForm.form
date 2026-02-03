@@ -170,12 +170,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="errorLabel3" min="-2" pref="16" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="yearCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="monthCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dayCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dob_label" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="dob_error_label" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="yearCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="monthCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dayCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dob_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
