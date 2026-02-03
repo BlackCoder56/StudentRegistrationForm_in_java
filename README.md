@@ -21,9 +21,10 @@ It allows users to enter student details such as name, email, password, date of 
 1. Run the `StudentForm.java` file.
 2. Fill in all required fields.
 3. Click the **Submit** button.
-4. Data will be validated and displayed in the text area.
-5. The same data will be saved to `students.csv`.
-6. The form will be cleared for the next entry.
+4. Generates Random Student IDs.
+5. Data will be validated and displayed in the text area.
+6. The same data will be saved to `students.csv`.
+7. The form will be cleared for the next entry.
 
 ## File Structure
 src/
