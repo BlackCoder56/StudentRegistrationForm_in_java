@@ -2,7 +2,7 @@
 
 ## Overview
 This project is a **Student Registration Form** built using **Java Swing**.  
-It allows users to enter student details such as name, email, password, date of birth, gender, and department. The entered data can be saved to a CSV file for record keeping.
+It allows users to enter student details such as name, email, password, date of birth, gender, and department and generates Random Student IDs. The entered data can be saved to a CSV file for record keeping.
 
 ## Features
 - Validates user inputs for empty fields, email format, and password strength.
