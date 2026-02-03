@@ -828,6 +828,7 @@ public final class StudentForm extends javax.swing.JFrame {
             collectValidInputs();
             GetInputedData();   // ✅ only runs if ALL checks pass
             SaveToCSV();
+            clearAllFields();
         } 
 //        else {
 //            displayData_textArea.setText(""); // optional: clear old data
